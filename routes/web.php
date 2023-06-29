@@ -22,4 +22,6 @@ Route::get('/', function () {
 Route::controller(AuthController::class)->group(function() {
     Route::get('/login', 'loginView')->name('loginView');
     Route::get('/register', 'registerView')->name('registerView');
+    Route::post('/register', 'register')->name('register');
+    Route::get('/home', 'home')->name('home');
 });
