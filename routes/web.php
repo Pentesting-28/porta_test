@@ -21,4 +21,5 @@ Route::get('/', function () {
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('/login', 'loginView')->name('loginView');
+    Route::get('/register', 'registerView')->name('registerView');
 });
