@@ -53,6 +53,27 @@ class AuthController extends Controller
             ->withSuccess('Te has registrado e iniciado sesión correctamente!');
     }
 
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+
+            $request->session()->regenerate();
+            $user = Auth::user();
+
+            return redirect()->route('home')
+                ->withSuccess('Has iniciado sesión correctamente!');
+        }
+
+        return back()->withErrors([
+            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+        ])->onlyInput('email');
+    }
+
     public function home()
     {
         if(Auth::check())
