@@ -24,4 +24,5 @@ Route::controller(AuthController::class)->group(function() {
     Route::get('/register', 'registerView')->name('registerView');
     Route::post('/register', 'register')->name('register');
     Route::get('/home', 'home')->name('home');
+    Route::post('/logout', 'logout')->name('logout');
 });

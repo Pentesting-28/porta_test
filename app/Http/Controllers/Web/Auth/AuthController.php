@@ -65,4 +65,16 @@ class AuthController extends Controller
             'email' => 'Inicie sesión para porder acceder.',
         ])->onlyInput('email');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/')
+            ->withSuccess('Ha cerrado sesión con éxito!');
+    }
 }
