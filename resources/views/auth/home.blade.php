@@ -5,7 +5,7 @@
 <style>
     body{
         background-repeat: no-repeat;
-        background-image: url(https://www.porta.com.py/assets_front/images/bg.png);
+        background-image: url('./img/bg.png');
         background-size: cover;
     }
 
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="col-md-4 col-sm-12">
-        <img src="{{asset('astronauta.png')}}" class="img-fluid floating" alt="">
+        <img src="{{asset('img/astronauta.png')}}" class="img-fluid floating" alt="">
     </div>
 </div>
 
