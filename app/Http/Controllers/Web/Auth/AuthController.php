@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Event;
+use App\Events\AuthenticationUser;
 
 class AuthController extends Controller
 {
@@ -49,6 +51,8 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        Event::dispatch(new AuthenticationUser($user));
+
         return redirect()->route('home')
             ->withSuccess('Te has registrado e iniciado sesión correctamente!');
     }
@@ -64,6 +68,7 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
             $user = Auth::user();
+            Event::dispatch(new AuthenticationUser($user));
 
             return redirect()->route('home')
                 ->withSuccess('Has iniciado sesión correctamente!');
